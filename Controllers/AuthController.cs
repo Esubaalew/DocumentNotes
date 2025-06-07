@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using NotesApi.Data;
 using NotesApi.Models;
@@ -34,6 +35,9 @@ namespace NotesApi.Controllers
             return Ok(new { token });
         }
 
+        // Add a debug endpoint
+            // Debug endpoint removed
+
         private string GenerateJwtToken(User user)
         {
             var jwtKey = _configuration["Jwt:Key"];
@@ -49,7 +53,9 @@ namespace NotesApi.Controllers
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Username),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()) // Very important: store the user ID
+                // Use a different claim name or just the NameIdentifier claim, not both
+                new Claim("UserId", user.Id.ToString()), // Store the user ID with unique claim type
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()) // Keep this for compatibility
             };
 
             var token = new JwtSecurityToken(

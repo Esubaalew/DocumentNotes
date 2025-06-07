@@ -46,12 +46,20 @@ namespace NotesApi.Controllers
 
         private int? GetCurrentUserId()
         {
-            // The user's ID is stored in the 'NameIdentifier' claim from the JWT
-            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+            // First try the custom UserId claim
+            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == "UserId");
+            
+            // If not found, try the NameIdentifier claim
+            if (userIdClaim == null)
+            {
+                userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+            }
+            
             if (userIdClaim != null && int.TryParse(userIdClaim.Value, out int userId))
             {
                 return userId;
             }
+            
             return null;
         }
     }

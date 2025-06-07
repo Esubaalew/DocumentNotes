@@ -19,13 +19,39 @@ builder.Services.AddAuthentication(options =>
 {
     options.TokenValidationParameters = new TokenValidationParameters
     {
-        ValidateIssuer = true,
-        ValidateAudience = true,
+        ValidateIssuer = false, // Set to false for debugging
+        ValidateAudience = false, // Set to false for debugging
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
         ValidIssuer = builder.Configuration["Jwt:Issuer"],
         ValidAudience = builder.Configuration["Jwt:Audience"],
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"] ?? string.Empty))
+    };
+
+    // Add event handlers for JWT bearer to handle CORS
+    options.Events = new JwtBearerEvents
+    {
+        OnMessageReceived = context =>
+        {
+            if (context.Request.Headers.ContainsKey("Authorization"))
+            {
+                return Task.CompletedTask;
+            }
+
+            var token = context.Request.Query["access_token"];
+            if (!string.IsNullOrEmpty(token))
+            {
+                context.Token = token;
+            }
+            return Task.CompletedTask;
+        },
+        OnChallenge = context =>
+        {
+            context.HandleResponse();
+            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            context.Response.ContentType = "application/json";
+            return context.Response.WriteAsync("{\"message\":\"You are not authorized\"}");
+        }
     };
 });
 
@@ -34,9 +60,11 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("ReactAppPolicy", policy =>
     {
-        policy.WithOrigins("http://localhost:5173") // Default port for Vite React app
+        policy.WithOrigins("http://localhost:5173", "http://localhost:5174", "http://localhost:5175") // Vite React app ports
               .AllowAnyHeader()
-              .AllowAnyMethod();
+              .AllowAnyMethod() 
+              .AllowCredentials()
+              .SetIsOriginAllowed(origin => true); // This is more permissive during development
     });
 });
 
