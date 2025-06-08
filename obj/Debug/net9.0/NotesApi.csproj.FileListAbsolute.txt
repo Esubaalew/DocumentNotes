@@ -43,3 +43,14 @@
 /media/esube/HDDStorage/Work/INTAPS/DocumentNotesApp/NotesApi/obj/Debug/net9.0/NotesApi.pdb
 /media/esube/HDDStorage/Work/INTAPS/DocumentNotesApp/NotesApi/obj/Debug/net9.0/NotesApi.genruntimeconfig.cache
 /media/esube/HDDStorage/Work/INTAPS/DocumentNotesApp/NotesApi/obj/Debug/net9.0/ref/NotesApi.dll
+/media/esube/HDDStorage/Work/INTAPS/DocumentNotesApp/obj/Debug/net9.0/NotesApi.csproj.AssemblyReference.cache
+/media/esube/HDDStorage/Work/INTAPS/DocumentNotesApp/obj/Debug/net9.0/NotesApi.GeneratedMSBuildEditorConfig.editorconfig
+/media/esube/HDDStorage/Work/INTAPS/DocumentNotesApp/obj/Debug/net9.0/NotesApi.AssemblyInfoInputs.cache
+/media/esube/HDDStorage/Work/INTAPS/DocumentNotesApp/obj/Debug/net9.0/NotesApi.AssemblyInfo.cs
+/media/esube/HDDStorage/Work/INTAPS/DocumentNotesApp/obj/Debug/net9.0/NotesApi.csproj.CoreCompileInputs.cache
+/media/esube/HDDStorage/Work/INTAPS/DocumentNotesApp/obj/Debug/net9.0/NotesApi.MvcApplicationPartsAssemblyInfo.cs
+/media/esube/HDDStorage/Work/INTAPS/DocumentNotesApp/obj/Debug/net9.0/NotesApi.MvcApplicationPartsAssemblyInfo.cache
+/media/esube/HDDStorage/Work/INTAPS/DocumentNotesApp/obj/Debug/net9.0/NotesApi.sourcelink.json
+/media/esube/HDDStorage/Work/INTAPS/DocumentNotesApp/obj/Debug/net9.0/NotesApi.dll
+/media/esube/HDDStorage/Work/INTAPS/DocumentNotesApp/obj/Debug/net9.0/refint/NotesApi.dll
+/media/esube/HDDStorage/Work/INTAPS/DocumentNotesApp/obj/Debug/net9.0/NotesApi.pdb

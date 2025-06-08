@@ -1,5 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
-import ToastContainer from '../components/ToastContainer';
+import { createContext, useContext, useState } from 'react';
 
 const ToastContext = createContext();
 
@@ -8,21 +7,25 @@ export const useToast = () => useContext(ToastContext);
 export const ToastProvider = ({ children }) => {
   const [toasts, setToasts] = useState([]);
 
-  const addToast = (message, type = 'success') => {
-    const id = Math.random().toString(36).substring(2, 9);
-    setToasts((prevToasts) => [...prevToasts, { id, message, type }]);
+  const addToast = (message, type = 'info', duration = 3000) => {
+    const id = Date.now();
+    setToasts(prev => [...prev, { id, message, type, duration }]);
+    
+    // Auto-remove the toast after duration
+    setTimeout(() => {
+      removeToast(id);
+    }, duration);
+    
+    return id;
   };
 
   const removeToast = (id) => {
-    setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
+    setToasts(prev => prev.filter(toast => toast.id !== id));
   };
 
   return (
-    <ToastContext.Provider value={{ addToast }}>
+    <ToastContext.Provider value={{ toasts, addToast, removeToast }}>
       {children}
-      <ToastContainer toasts={toasts} removeToast={removeToast} />
     </ToastContext.Provider>
   );
 };
-
-export default ToastContext;

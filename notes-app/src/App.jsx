@@ -1,74 +1,60 @@
-import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider, useAuth } from './context/AuthContext';
+import { ToastProvider } from './context/ToastContext';
 import Login from './components/Login';
 import NotesDashboard from './components/NotesDashboard';
-import { ToastProvider } from './context/ToastContext';
+import Header from './components/Header';
+import ToastContainer from './components/ToastContainer';
+import './index.css';
+
+// Protected route component
+const ProtectedRoute = ({ children }) => {
+  const { token, loading } = useAuth();
+  console.log('ProtectedRoute - token:', token, 'loading:', loading);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-600"></div>
+      </div>
+    );
+  }
+
+  if (!token) {
+    console.log('No token found, redirecting to login');
+    return <Navigate to="/login" replace />;
+  }
+
+  console.log('Token found, rendering protected content');
+  return (
+    <>
+      <Header />
+      {children}
+    </>
+  );
+};
 
 function App() {
-  const [token, setToken] = useState(null);
-  const [user, setUser] = useState(null);
-
-  // On initial load, check if a token and user data exist in local storage
-  useEffect(() => {
-    const storedToken = localStorage.getItem('authToken');
-    const storedUser = localStorage.getItem('user');
-    
-    if (storedToken) {
-      setToken(storedToken);
-    }
-    
-    if (storedUser) {
-      try {
-        setUser(JSON.parse(storedUser));
-      } catch (e) {
-        console.error('Failed to parse user data');
-      }
-    }
-  }, []);
-
-  const handleLoginSuccess = (newToken, userData) => {
-    if (!newToken) {
-      return;
-    }
-    
-    // Store the token and user data
-    localStorage.setItem('authToken', newToken);
-    localStorage.setItem('user', JSON.stringify(userData));
-    setToken(newToken);
-    setUser(userData);
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('user');
-    setToken(null);
-    setUser(null);
-  };
-
   return (
-    <ToastProvider>
-      <div>
-        <header className="app-header">
-          <h1>
-            <img src="/document-notes-icon.svg" alt="DocumentMind Logo" className="app-logo" />
-            DocumentMind
-          </h1>
-          {user && (
-            <div className="user-profile">
-              <span className="username">Welcome, {user.username}</span>
-            </div>
-          )}
-        </header>
-        
-        <main className="app-container">
-          {token ? (
-            <NotesDashboard token={token} user={user} onLogout={handleLogout} />
-          ) : (
-            <Login onLoginSuccess={handleLoginSuccess} />
-          )}
-        </main>
-      </div>
-    </ToastProvider>
+    <AuthProvider>
+      <ToastProvider>
+        <Router>
+          <div className="min-h-screen bg-gray-50">
+            <ToastContainer />
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/" element={
+                <ProtectedRoute>
+                  <NotesDashboard />
+                </ProtectedRoute>
+              } />
+              <Route path="*" element={<Navigate to="/" />} />
+            </Routes>
+          </div>
+        </Router>
+      </ToastProvider>
+    </AuthProvider>
   );
 }
 
-export default App;
+export default App

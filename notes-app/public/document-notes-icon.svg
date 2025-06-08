@@ -1,28 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-  <!-- Background shape -->
-  <rect x="60" y="40" width="392" height="432" rx="30" ry="30" fill="#f0f4f8" stroke="#3b82f6" stroke-width="12"/>
-  
-  <!-- Document lines -->
-  <line x1="120" y1="120" x2="280" y2="120" stroke="#94a3b8" stroke-width="8" stroke-linecap="round"/>
-  <line x1="120" y1="160" x2="340" y2="160" stroke="#94a3b8" stroke-width="8" stroke-linecap="round"/>
-  <line x1="120" y1="200" x2="380" y2="200" stroke="#94a3b8" stroke-width="8" stroke-linecap="round"/>
-  
-  <!-- Note card -->
-  <rect x="120" y="240" width="280" height="160" rx="12" ry="12" fill="#dbeafe" stroke="#3b82f6" stroke-width="6"/>
-  
-  <!-- Note title -->
-  <line x1="140" y1="270" x2="240" y2="270" stroke="#1e40af" stroke-width="8" stroke-linecap="round"/>
-  
-  <!-- Note content lines -->
-  <line x1="140" y1="300" x2="380" y2="300" stroke="#60a5fa" stroke-width="4" stroke-linecap="round"/>
-  <line x1="140" y1="330" x2="360" y2="330" stroke="#60a5fa" stroke-width="4" stroke-linecap="round"/>
-  <line x1="140" y1="360" x2="320" y2="360" stroke="#60a5fa" stroke-width="4" stroke-linecap="round"/>
-  
-  <!-- Pencil icon -->
-  <g transform="translate(380, 120) rotate(45) scale(0.8)">
-    <rect x="-15" y="-50" width="30" height="80" rx="5" ry="5" fill="#f59e0b"/>
-    <polygon points="0,-60 -15,-50 15,-50" fill="#78350f"/>
-    <rect x="-10" y="30" width="20" height="10" rx="3" ry="3" fill="#78350f"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" fill="none">
+  <rect width="200" height="200" rx="20" fill="#0369a1"/>
+  <path d="M50 40H150C155.523 40 160 44.4772 160 50V150C160 155.523 155.523 160 150 160H50C44.4772 160 40 155.523 40 150V50C40 44.4772 44.4772 40 50 40Z" fill="white"/>
+  <rect x="60" y="60" width="80" height="10" rx="2" fill="#0369a1"/>
+  <rect x="60" y="80" width="80" height="10" rx="2" fill="#0369a1"/>
+  <rect x="60" y="100" width="60" height="10" rx="2" fill="#0369a1"/>
+  <rect x="60" y="130" width="30" height="10" rx="2" fill="#0369a1"/>
 </svg>

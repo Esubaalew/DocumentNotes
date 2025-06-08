@@ -1,21 +1,53 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
-const Skeleton = () => {
-    return (
-        <div className="bg-white p-4 rounded-lg shadow animate-pulse">
-            <div className="h-6 bg-gray-200 rounded w-3/4 mb-4"></div>
-            <div className="space-y-3">
-                <div className="h-4 bg-gray-200 rounded"></div>
-                <div className="h-4 bg-gray-200 rounded"></div>
-                <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+const Skeleton = ({ type = 'card', count = 1 }) => {
+  const renderSkeleton = () => {
+    switch (type) {
+      case 'card':
+        return (
+          <div className="bg-white rounded-lg shadow-md overflow-hidden p-6 animate-pulse">
+            <div className="h-6 bg-gray-200 rounded mb-4 w-3/4"></div>
+            <div className="h-4 bg-gray-200 rounded mb-2 w-full"></div>
+            <div className="h-4 bg-gray-200 rounded mb-2 w-full"></div>
+            <div className="h-4 bg-gray-200 rounded mb-4 w-2/3"></div>
+            <div className="flex justify-between items-center">
+              <div className="h-4 bg-gray-200 rounded w-1/4"></div>
+              <div className="flex space-x-2">
+                <div className="h-6 w-6 bg-gray-200 rounded-full"></div>
+                <div className="h-6 w-6 bg-gray-200 rounded-full"></div>
+              </div>
             </div>
-            <div className="flex justify-end space-x-2 mt-4">
-                <div className="h-6 w-6 bg-gray-200 rounded"></div>
-                <div className="h-6 w-6 bg-gray-200 rounded"></div>
-                <div className="h-6 w-6 bg-gray-200 rounded"></div>
-            </div>
-        </div>
-    );
+          </div>
+        );
+      case 'text':
+        return (
+          <div className="animate-pulse">
+            <div className="h-4 bg-gray-200 rounded mb-2 w-full"></div>
+            <div className="h-4 bg-gray-200 rounded mb-2 w-full"></div>
+            <div className="h-4 bg-gray-200 rounded mb-2 w-3/4"></div>
+          </div>
+        );
+      case 'avatar':
+        return (
+          <div className="h-10 w-10 bg-gray-200 rounded-full animate-pulse"></div>
+        );
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <>
+      {[...Array(count)].map((_, index) => (
+        <div key={index}>{renderSkeleton()}</div>
+      ))}
+    </>
+  );
+};
+
+Skeleton.propTypes = {
+  type: PropTypes.oneOf(['card', 'text', 'avatar']),
+  count: PropTypes.number,
 };
 
 export default Skeleton;
