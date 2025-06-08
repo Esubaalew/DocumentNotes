@@ -1,8 +1,0 @@
-### Login with test user
-POST http://localhost:5105/api/auth/login
-Content-Type: application/json
-
-{
-  "username": "user1",
-  "password": "password1"
-}
