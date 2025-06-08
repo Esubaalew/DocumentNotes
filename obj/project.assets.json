@@ -774,11 +774,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/media/esube/HDDStorage/Work/INTAPS/DocumentNotesApp/NotesApi/NotesApi.csproj",
+      "projectUniqueName": "/media/esube/HDDStorage/Work/INTAPS/DocumentNotesApp/NotesApi.csproj",
       "projectName": "NotesApi",
-      "projectPath": "/media/esube/HDDStorage/Work/INTAPS/DocumentNotesApp/NotesApi/NotesApi.csproj",
+      "projectPath": "/media/esube/HDDStorage/Work/INTAPS/DocumentNotesApp/NotesApi.csproj",
       "packagesPath": "/home/esube/.nuget/packages/",
-      "outputPath": "/media/esube/HDDStorage/Work/INTAPS/DocumentNotesApp/NotesApi/obj/",
+      "outputPath": "/media/esube/HDDStorage/Work/INTAPS/DocumentNotesApp/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/esube/.nuget/NuGet/NuGet.Config"

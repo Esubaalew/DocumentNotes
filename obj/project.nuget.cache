@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3EmBC0wbv7U=",
+  "dgSpecHash": "pDkVoErhBpc=",
   "success": true,
-  "projectFilePath": "/media/esube/HDDStorage/Work/INTAPS/DocumentNotesApp/NotesApi/NotesApi.csproj",
+  "projectFilePath": "/media/esube/HDDStorage/Work/INTAPS/DocumentNotesApp/NotesApi.csproj",
   "expectedPackageFiles": [
     "/home/esube/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/9.0.5/microsoft.aspnetcore.authentication.jwtbearer.9.0.5.nupkg.sha512",
     "/home/esube/.nuget/packages/microsoft.aspnetcore.openapi/9.0.5/microsoft.aspnetcore.openapi.9.0.5.nupkg.sha512",

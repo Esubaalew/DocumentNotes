@@ -6,16 +6,13 @@ public static class DbInitializer
 {
     public static void Initialize(ApplicationDbContext context)
     {
-        // Ensure database is created
         context.Database.EnsureCreated();
 
-        // Check if we already have data
         if (context.Users.Any())
         {
-            return; // Database has been seeded
+            return;
         }
 
-        // Add demo users
         var users = new User[]
         {
             new User { Username = "demo", Password = "demo123" },
@@ -25,7 +22,6 @@ public static class DbInitializer
         context.Users.AddRange(users);
         context.SaveChanges();
 
-        // Add demo notes
         var notes = new Note[]
         {
             new Note

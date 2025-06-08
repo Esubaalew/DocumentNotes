@@ -1,36 +1,39 @@
-# Document Notes Viewer with Authentication
+# Document Notes App
 
-This is a simple full-stack web application built for a technical assignment. It allows users to log in, create text-based notes, and view a list of their own notes.
+A full-stack web application for secure note-taking. Users can register, log in, and manage their personal notes.
 
 ## Technical Stack
 
-*   **Backend:** C# with ASP.NET Core 8.0 Web API
-*   **Frontend:** React (Vite) with JavaScript
-*   **Authentication:** JSON Web Tokens (JWT)
-*   **Database:** In-memory static data store (no database required)
+- **Backend:** C# with ASP.NET Core 8.0 Web API
+- **Frontend:** React (Vite) with JavaScript
+- **Authentication:** JSON Web Tokens (JWT)
+- **Database:** SQLite (persistent storage)
 
 ---
 
-## How to Run the Application Locally
+## Instructions for Running the Application Locally
 
-You will need [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) and [Node.js](https://nodejs.org/) installed on your machine.
+### Prerequisites
+- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+- [Node.js](https://nodejs.org/)
 
 ### 1. Run the Backend API
-
-First, start the backend server.
 
 ```bash
 # Navigate to the backend folder
 cd NotesApi
 
 # Restore dependencies and run the project
+dotnet restore
 dotnet run
 ```
-The API will start running, typically on `https://localhost:7123`. You can visit `https://localhost:7123/swagger` to see the API documentation.
+- The API will start, typically on `http://localhost:5105` (see your terminal for the exact port).
+- On first run, a SQLite database file (`notes.db`) will be created and seeded with demo data.
+- API docs available at `/swagger` (e.g., `http://localhost:5105/swagger`).
 
 ### 2. Run the Frontend Application
 
-In a **new terminal**, start the React frontend.
+In a **new terminal**:
 
 ```bash
 # Navigate to the frontend folder
@@ -42,29 +45,63 @@ npm install
 # Start the development server
 npm run dev
 ```
-The application will open in your browser, typically at `http://localhost:5173`.
+- The app will open at `http://localhost:5173`.
 
 ---
 
 ## Sample Login Credentials
 
-The application uses a hardcoded list of users for authentication. You can use the following credentials to log in:
+Demo users are seeded automatically:
 
-*   **Username:** `user1`
-*   **Password:** `password1`
-
----
-*   **Username:** `user2`
-*   **Password:** `password2`
+- **Username:** `demo`  
+  **Password:** `demo123`
+- **Username:** `test`  
+  **Password:** `test123`
 
 ---
 
 ## Architecture and Design Decisions
 
-*   **Decoupled Frontend/Backend:** The application is split into two separate projects: a C# ASP.NET Core Web API for the backend and a React application for the frontend. This is a modern, scalable architecture that allows for independent development and deployment. The two communicate via HTTP requests, with the backend exposing a RESTful API.
+- **Decoupled Frontend/Backend:**
+  - The backend (ASP.NET Core Web API) and frontend (React) are separate projects, communicating via RESTful HTTP APIs.
 
-*   **JWT for Authentication:** JWT was chosen for authentication because it is stateless and works perfectly for decoupled applications. After a user logs in, the API issues a signed token. The React frontend stores this token and includes it in the `Authorization` header for all subsequent requests to protected endpoints. The API validates the token on each request to identify and authorize the user.
+- **JWT Authentication:**
+  - Stateless authentication using JWT. The backend issues a signed token on login, which the frontend stores and sends with each request.
 
-*   **In-Memory Data Store:** As per the project requirements, a simple static C# class (`InMemoryDataStore`) is used for data persistence. This avoids the complexity of setting up a database for this assignment. The data is pre-populated with sample users and notes and will reset every time the application restarts.
+- **Persistent Storage with SQLite:**
+  - Notes and users are stored in a SQLite database (`notes.db`).
+  - On first run, the database is seeded with demo users and notes for easy testing.
 
-*   **Component-Based UI:** The React frontend is built with a component-based architecture. The main `App` component manages authentication state, and conditionally renders either the `Login` component or the `NotesDashboard` component. This separation of concerns makes the code cleaner and easier to manage.
+- **Service-Oriented Backend:**
+  - Core logic (authentication, note management) is encapsulated in service classes (`AuthService`, `NoteService`).
+  - Controllers are thin and delegate to services, making the codebase testable and maintainable.
+
+- **Unit Testing:**
+  - Core logic is covered by unit tests using xUnit and EF Core's in-memory provider.
+  - Run all tests with:
+    ```sh
+    dotnet test
+    ```
+
+- **Component-Based UI:**
+  - The React frontend uses a component-based architecture for maintainability and scalability.
+
+---
+
+## Additional Notes
+- If you want to reseed the database, delete `NotesApi/notes.db` and restart the backend.
+- All sensitive configuration (JWT keys, etc.) is stored in `NotesApi/appsettings.json`.
+- CORS is configured to allow requests from the frontend dev server (`http://localhost:5173`).
+
+---
+
+## API Documentation
+
+- The backend API includes built-in **Swagger (OpenAPI)** support for interactive documentation and testing.
+- Once the backend is running, visit:
+  - `http://localhost:5105/swagger` (or the port shown in your terminal)
+- You can explore and test all API endpoints directly from the Swagger UI.
+
+---
+
+For questions or contributions, please open an issue or pull request!
