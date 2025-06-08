@@ -5,6 +5,9 @@ A full-stack web application for secure note-taking. Users can register, log in,
 ## Technical Stack
 
 - **Backend:** C# with ASP.NET Core 8.0 Web API
+  - Uses **SQLite** for persistent data storage
+  - Supports full CRUD operations for notes
+  - JWT-based authentication
 - **Frontend:** React (Vite) with JavaScript
 - **Authentication:** JSON Web Tokens (JWT)
 - **Database:** SQLite (persistent storage)
@@ -104,4 +107,50 @@ Demo users are seeded automatically:
 
 ---
 
+## Running Tests
+
+### Backend (ASP.NET Core)
+
+Unit tests for the backend are implemented using xUnit and are located in the `NotesApi.Tests` project. These tests cover core logic for authentication and note management services.
+
+**To run all backend tests:**
+
+```sh
+cd NotesApi.Tests
+# or from the project root:
+dotnet test
+```
+
+This will build the test project and execute all tests, displaying a summary of the results in the terminal.
+
+### Frontend (React)
+
+If you have frontend tests (e.g., using Jest or React Testing Library), you can run them with:
+
+```sh
+cd notes-app
+npm test
+```
+
+> **Note:** If no frontend tests are present, you can skip this step.
+
+---
+
 For questions or contributions, please open an issue or pull request!
+
+## Features
+
+- User authentication with JWT
+- Persistent storage using SQLite database (no in-memory storage)
+- Full CRUD (Create, Read, Update, Delete) operations for notes
+- Responsive React frontend
+- Interactive API documentation with Swagger
+
+## Architecture & Tech Stack
+
+- **Backend:** ASP.NET Core Web API
+  - Uses **SQLite** for persistent data storage
+  - Supports full CRUD operations for notes
+  - JWT-based authentication
+- **Frontend:** React (Vite)
+- **Testing:** xUnit for backend unit tests
