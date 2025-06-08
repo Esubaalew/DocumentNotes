@@ -9,6 +9,9 @@ A full-stack web application for secure note-taking. Users can register, log in,
   - Supports full CRUD operations for notes
   - JWT-based authentication
 - **Frontend:** React (Vite) with JavaScript
+  - Styled with Tailwind CSS for modern, responsive design
+  - Uses React Router for navigation
+  - Axios for API communication
 - **Authentication:** JSON Web Tokens (JWT)
 - **Database:** SQLite (persistent storage)
 
@@ -60,6 +63,9 @@ Demo users are seeded automatically:
   **Password:** `demo123`
 - **Username:** `test`  
   **Password:** `test123`
+- **Username:** `abebe`  
+  **Password:** `abebe123`
+  (Has C# programming related notes)
 
 ---
 
@@ -88,6 +94,7 @@ Demo users are seeded automatically:
 
 - **Component-Based UI:**
   - The React frontend uses a component-based architecture for maintainability and scalability.
+  - Styled with Tailwind CSS for responsive and modern design.
 
 ---
 
@@ -143,7 +150,7 @@ For questions or contributions, please open an issue or pull request!
 - User authentication with JWT
 - Persistent storage using SQLite database (no in-memory storage)
 - Full CRUD (Create, Read, Update, Delete) operations for notes
-- Responsive React frontend
+- Responsive React frontend with Tailwind CSS
 - Interactive API documentation with Swagger
 
 ## Architecture & Tech Stack
@@ -153,4 +160,7 @@ For questions or contributions, please open an issue or pull request!
   - Supports full CRUD operations for notes
   - JWT-based authentication
 - **Frontend:** React (Vite)
+  - Tailwind CSS for styling
+  - React Router for navigation
+  - Axios for API communication
 - **Testing:** xUnit for backend unit tests
